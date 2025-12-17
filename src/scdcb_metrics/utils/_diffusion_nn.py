@@ -17,7 +17,7 @@ def _compute_transitions(X: csr_matrix, density_normalize: bool = True):
 
     https://github.com/scverse/scanpy/blob/2e98705347ea484c36caa9ba10de1987b09081bf/scanpy/neighbors/__init__.py#L899
     """
-    # TODO(adamgayoso): Refactor this with Jax
+    # TODO(xfchen0912): Refactor this with Jax
     # density normalization as of Coifman et al. (2005)
     # ensures that kernel matrix is independent of sampling density
     if density_normalize:
@@ -52,7 +52,7 @@ def _compute_eigen(
 
     https://github.com/scverse/scanpy/blob/2e98705347ea484c36caa9ba10de1987b09081bf/scanpy/neighbors/__init__.py
     """
-    # TODO(adamgayoso): Refactor this with Jax
+    # TODO(xfchen0912): Refactor this with Jax
     matrix = transitions_sym
     # compute the spectrum
     if n_comps == 0:

@@ -5,7 +5,7 @@ import pandas as pd
 from sklearn.metrics import silhouette_samples as sk_silhouette_samples
 from sklearn.metrics.pairwise import pairwise_distances
 
-import scib_metrics
+import scdcb_metrics
 from tests.utils.data import dummy_benchmarker_adata, dummy_x_labels
 
 
@@ -183,7 +183,7 @@ def silhouette_samples_custom(X, cluster_labels, metric="euclidean", between_clu
 def test_silhouette_samples_cosine():
     X, labels = dummy_x_labels()
     assert np.allclose(
-        scib_metrics.utils.silhouette_samples(X, labels, metric="cosine"),
+        scdcb_metrics.utils.silhouette_samples(X, labels, metric="cosine"),
         silhouette_samples_custom(X, labels, metric="cosine"),
         atol=1e-5,
     )
@@ -192,7 +192,7 @@ def test_silhouette_samples_cosine():
 def test_silhouette_samples_nearest():
     X, labels = dummy_x_labels()
     assert np.allclose(
-        scib_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="nearest"),
+        scdcb_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="nearest"),
         silhouette_samples_custom(X, labels, between_cluster_distances="nearest"),
         atol=1e-5,
     )
@@ -201,7 +201,7 @@ def test_silhouette_samples_nearest():
 def test_silhouette_samples_mean_other():
     X, labels = dummy_x_labels()
     assert np.allclose(
-        scib_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="mean_other"),
+        scdcb_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="mean_other"),
         silhouette_samples_custom(X, labels, between_cluster_distances="mean_other"),
         atol=1e-5,
     )
@@ -210,7 +210,7 @@ def test_silhouette_samples_mean_other():
 def test_silhouette_samples_furthest():
     X, labels = dummy_x_labels()
     assert np.allclose(
-        scib_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="furthest"),
+        scdcb_metrics.utils.silhouette_samples(X, labels, between_cluster_distances="furthest"),
         silhouette_samples_custom(X, labels, between_cluster_distances="furthest"),
         atol=1e-5,
     )
@@ -218,21 +218,21 @@ def test_silhouette_samples_furthest():
 
 def test_silhouette_label():
     X, labels = dummy_x_labels()
-    score = scib_metrics.silhouette_label(X, labels)
+    score = scdcb_metrics.silhouette_label(X, labels)
     score_sk = (np.mean(sk_silhouette_samples(X, labels)) + 1) / 2
     assert np.allclose(score, score_sk)
 
 
 def test_silhouette_label_cosine():
     X, labels = dummy_x_labels()
-    score = scib_metrics.silhouette_label(X, labels, metric="cosine")
+    score = scdcb_metrics.silhouette_label(X, labels, metric="cosine")
     score_sk = (np.mean(sk_silhouette_samples(X, labels, metric="cosine")) + 1) / 2
     assert np.allclose(score, score_sk)
 
 
 def test_bras():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.bras(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key])
+    score = scdcb_metrics.bras(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key])
     score_no = silhouette_batch_custom(
         ad.obsm[emb_keys[0]],
         ad.obs[labels_key],
@@ -245,21 +245,21 @@ def test_bras():
 
 def test_silhouette_batch_default():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key])
+    score = scdcb_metrics.silhouette_batch(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key])
     score_no = silhouette_batch_custom(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key])
     assert np.allclose(score, score_no)
 
 
 def test_silhouette_batch_cosine():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], metric="cosine")
+    score = scdcb_metrics.silhouette_batch(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], metric="cosine")
     score_no = silhouette_batch_custom(ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], metric="cosine")
     assert np.allclose(score, score_no)
 
 
 def test_silhouette_batch_nearest():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], between_cluster_distances="nearest"
     )
     score_no = silhouette_batch_custom(
@@ -270,7 +270,7 @@ def test_silhouette_batch_nearest():
 
 def test_silhouette_batch_cosine_nearest():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]],
         ad.obs[labels_key],
         ad.obs[batch_key],
@@ -289,7 +289,7 @@ def test_silhouette_batch_cosine_nearest():
 
 def test_silhouette_batch_furthest():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], between_cluster_distances="furthest"
     )
     score_no = silhouette_batch_custom(
@@ -300,7 +300,7 @@ def test_silhouette_batch_furthest():
 
 def test_silhouette_batch_cosine_furthest():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]],
         ad.obs[labels_key],
         ad.obs[batch_key],
@@ -319,7 +319,7 @@ def test_silhouette_batch_cosine_furthest():
 
 def test_silhouette_batch_mean_other():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]], ad.obs[labels_key], ad.obs[batch_key], between_cluster_distances="mean_other"
     )
     score_no = silhouette_batch_custom(
@@ -330,7 +330,7 @@ def test_silhouette_batch_mean_other():
 
 def test_silhouette_batch_cosine_mean_other():
     ad, emb_keys, batch_key, labels_key = dummy_benchmarker_adata()
-    score = scib_metrics.silhouette_batch(
+    score = scdcb_metrics.silhouette_batch(
         ad.obsm[emb_keys[0]],
         ad.obs[labels_key],
         ad.obs[batch_key],

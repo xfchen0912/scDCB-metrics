@@ -9,7 +9,7 @@ scib_logger = logging.getLogger("scdcb_metrics")
 
 
 class ScibConfig:
-    """Config manager for scib-metrics.
+    """Config manager for scdcb-metrics.
 
     Examples
     --------

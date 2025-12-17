@@ -15,60 +15,60 @@ from sklearn.metrics import silhouette_samples as sk_silhouette_samples
 from sklearn.metrics.pairwise import pairwise_distances_argmin
 from sklearn.neighbors import NearestNeighbors
 
-import scib_metrics
-from scib_metrics.nearest_neighbors import NeighborsResults
+import scdcb_metrics
+from scdcb_metrics.nearest_neighbors import NeighborsResults
 from tests.utils.data import dummy_x_labels, dummy_x_labels_batch
 
-scib_metrics.settings.jax_fix_no_kernel_image()
+scdcb_metrics.settings.jax_fix_no_kernel_image()
 
 
 def test_package_has_version():
-    scib_metrics.__version__
+    scdcb_metrics.__version__
 
 
 def test_cdist():
     x = jnp.array([[1, 2], [3, 4]])
     y = jnp.array([[5, 6], [7, 8]])
-    assert np.allclose(scib_metrics.utils.cdist(x, y), sp_cdist(x, y))
+    assert np.allclose(scdcb_metrics.utils.cdist(x, y), sp_cdist(x, y))
 
 
 def test_cdist_cosine():
     x = jnp.array([[1, 2], [3, 4]])
     y = jnp.array([[5, 6], [7, 8]])
-    assert np.allclose(scib_metrics.utils.cdist(x, y, metric="cosine"), sp_cdist(x, y, metric="cosine"), atol=1e-5)
+    assert np.allclose(scdcb_metrics.utils.cdist(x, y, metric="cosine"), sp_cdist(x, y, metric="cosine"), atol=1e-5)
 
 
 def test_pdist():
     x = jnp.array([[1, 2], [3, 4]])
-    assert np.allclose(scib_metrics.utils.pdist_squareform(x), squareform(pdist(x)))
+    assert np.allclose(scdcb_metrics.utils.pdist_squareform(x), squareform(pdist(x)))
 
 
 def test_silhouette_samples():
     X, labels = dummy_x_labels()
-    assert np.allclose(scib_metrics.utils.silhouette_samples(X, labels), sk_silhouette_samples(X, labels), atol=1e-5)
+    assert np.allclose(scdcb_metrics.utils.silhouette_samples(X, labels), sk_silhouette_samples(X, labels), atol=1e-5)
 
 
 def test_silhouette_label():
     X, labels = dummy_x_labels()
-    score = scib_metrics.silhouette_label(X, labels)
+    score = scdcb_metrics.silhouette_label(X, labels)
     assert score > 0
-    scib_metrics.silhouette_label(X, labels, rescale=False)
+    scdcb_metrics.silhouette_label(X, labels, rescale=False)
 
 
 def test_silhouette_batch():
     X, labels, batch = dummy_x_labels_batch()
-    score = scib_metrics.silhouette_batch(X, labels, batch)
+    score = scdcb_metrics.silhouette_batch(X, labels, batch)
     assert score > 0
-    scib_metrics.silhouette_batch(X, labels, batch)
+    scdcb_metrics.silhouette_batch(X, labels, batch)
 
 
 def test_compute_simpson_index():
     X, labels = dummy_x_labels()
-    D = scib_metrics.utils.cdist(X, X)
+    D = scdcb_metrics.utils.cdist(X, X)
     nbrs = NearestNeighbors(n_neighbors=30, algorithm="kd_tree").fit(X)
     D, knn_idx = nbrs.kneighbors(X)
     row_idx = np.arange(X.shape[0])[:, None]
-    scib_metrics.utils.compute_simpson_index(
+    scdcb_metrics.utils.compute_simpson_index(
         jnp.array(D), jnp.array(knn_idx), jnp.array(row_idx), jnp.array(labels), len(np.unique(labels))
     )
 
@@ -80,7 +80,7 @@ def test_lisi_knn(n_neighbors):
     nbrs = NearestNeighbors(n_neighbors=n_neighbors, algorithm="kd_tree").fit(X)
     dists, inds = nbrs.kneighbors(X)
     neigh_results = NeighborsResults(indices=inds, distances=dists)
-    lisi_res = scib_metrics.lisi_knn(neigh_results, labels, perplexity=perplexity)
+    lisi_res = scdcb_metrics.lisi_knn(neigh_results, labels, perplexity=perplexity)
     harmonypy_lisi_res = harmonypy_lisi(
         X, pd.DataFrame(labels, columns=["labels"]), label_colnames=["labels"], perplexity=perplexity
     )[:, 0]
@@ -89,13 +89,13 @@ def test_lisi_knn(n_neighbors):
 
 def test_ilisi_clisi_knn():
     X, labels, batches = dummy_x_labels_batch(x_is_neighbors_results=True)
-    scib_metrics.ilisi_knn(X, batches, perplexity=10)
-    scib_metrics.clisi_knn(X, labels, perplexity=10)
+    scdcb_metrics.ilisi_knn(X, batches, perplexity=10)
+    scdcb_metrics.clisi_knn(X, labels, perplexity=10)
 
 
 def test_nmi_ari_cluster_labels_kmeans():
     X, labels = dummy_x_labels()
-    out = scib_metrics.nmi_ari_cluster_labels_kmeans(X, labels)
+    out = scdcb_metrics.nmi_ari_cluster_labels_kmeans(X, labels)
     nmi, ari = out["nmi"], out["ari"]
     assert isinstance(nmi, float)
     assert isinstance(ari, float)
@@ -103,7 +103,7 @@ def test_nmi_ari_cluster_labels_kmeans():
 
 def test_nmi_ari_cluster_labels_leiden_parallel():
     X, labels = dummy_x_labels(symmetric_positive=True, x_is_neighbors_results=True)
-    out = scib_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=True, n_jobs=2)
+    out = scdcb_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=True, n_jobs=2)
     nmi, ari = out["nmi"], out["ari"]
     assert isinstance(nmi, float)
     assert isinstance(ari, float)
@@ -111,7 +111,7 @@ def test_nmi_ari_cluster_labels_leiden_parallel():
 
 def test_nmi_ari_cluster_labels_leiden_single_resolution():
     X, labels = dummy_x_labels(symmetric_positive=True, x_is_neighbors_results=True)
-    out = scib_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=0.1)
+    out = scdcb_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=0.1)
     nmi, ari = out["nmi"], out["ari"]
     assert isinstance(nmi, float)
     assert isinstance(ari, float)
@@ -119,8 +119,8 @@ def test_nmi_ari_cluster_labels_leiden_single_resolution():
 
 def test_nmi_ari_cluster_labels_leiden_reproducibility():
     X, labels = dummy_x_labels(symmetric_positive=True, x_is_neighbors_results=True)
-    out1 = scib_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=3.0)
-    out2 = scib_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=3.0)
+    out1 = scdcb_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=3.0)
+    out2 = scdcb_metrics.nmi_ari_cluster_labels_leiden(X, labels, optimize_resolution=False, resolution=3.0)
     nmi1, ari1 = out1["nmi"], out1["ari"]
     nmi2, ari2 = out2["nmi"], out2["ari"]
     assert nmi1 == nmi2
@@ -139,7 +139,7 @@ def test_leiden_graph_construction():
 
 def test_isolated_labels():
     X, labels, batch = dummy_x_labels_batch()
-    pred = scib_metrics.isolated_labels(X, labels, batch)
+    pred = scdcb_metrics.isolated_labels(X, labels, batch)
     adata = anndata.AnnData(X)
     adata.obsm["embed"] = X
     adata.obs["batch"] = batch
@@ -153,7 +153,7 @@ def test_kmeans():
     len(centers)
     X, labels_true = make_blobs(n_samples=3000, centers=centers, cluster_std=0.7, random_state=42)
 
-    kmeans = scib_metrics.utils.KMeans(n_clusters=3)
+    kmeans = scdcb_metrics.utils.KMeans(n_clusters=3)
     kmeans.fit(X)
     assert kmeans.labels_.shape == (X.shape[0],)
 
@@ -177,7 +177,7 @@ def test_kmeans():
 
 def test_kbet():
     X, _, batch = dummy_x_labels_batch(x_is_neighbors_results=True)
-    acc_rate, stats, pvalues = scib_metrics.kbet(X, batch)
+    acc_rate, stats, pvalues = scdcb_metrics.kbet(X, batch)
     assert isinstance(acc_rate, float)
     assert len(stats) == X.indices.shape[0]
     assert len(pvalues) == X.indices.shape[0]
@@ -185,11 +185,11 @@ def test_kbet():
 
 def test_kbet_per_label():
     X, labels, batch = dummy_x_labels_batch(x_is_neighbors_results=True)
-    score = scib_metrics.kbet_per_label(X, batch, labels)
+    score = scdcb_metrics.kbet_per_label(X, batch, labels)
     assert isinstance(score, float)
 
 
 def test_graph_connectivity():
     X, labels = dummy_x_labels(symmetric_positive=True, x_is_neighbors_results=True)
-    metric = scib_metrics.graph_connectivity(X, labels)
+    metric = scdcb_metrics.graph_connectivity(X, labels)
     assert isinstance(metric, float)

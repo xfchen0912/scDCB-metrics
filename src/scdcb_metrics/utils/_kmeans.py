@@ -147,7 +147,7 @@ class KMeans:
     def _kmeans_full_run(self, X: jnp.ndarray, key: jnp.ndarray) -> jnp.ndarray:
         def _kmeans_step(state):
             centroids, old_inertia, _, n_iter = state
-            # TODO(adamgayoso): Efficiently compute argmin and min simultaneously.
+            # TODO(xfchen0912): Efficiently compute argmin and min simultaneously.
             dist, new_labels = _get_dist_labels(X, centroids)
             # From https://colab.research.google.com/drive/1AwS4haUx6swF82w3nXr6QKhajdF8aSvA?usp=sharing
             counts = (new_labels[jnp.newaxis, :] == jnp.arange(self.n_clusters)[:, jnp.newaxis]).sum(

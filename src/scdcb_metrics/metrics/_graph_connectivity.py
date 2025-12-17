@@ -17,7 +17,7 @@ def graph_connectivity(X: NeighborsResults, labels: np.ndarray) -> float:
         Array of shape (n_cells,) representing label values
         for each cell.
     """
-    # TODO(adamgayoso): Utils for validating inputs
+    # TODO(xfchen0912): Utils for validating inputs
     clust_res = []
 
     graph = X.knn_graph_distances

@@ -1,8 +1,8 @@
 import pandas as pd
 import pytest
 
-from scib_metrics.benchmark import BatchCorrection, Benchmarker, BioConservation
-from scib_metrics.nearest_neighbors import jax_approx_min_k
+from scdcb_metrics.benchmark import BatchCorrection, Benchmarker, BioConservation
+from scdcb_metrics.nearest_neighbors import jax_approx_min_k
 from tests.utils.data import dummy_benchmarker_adata
 
 

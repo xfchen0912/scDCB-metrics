@@ -3,8 +3,8 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
-import scib_metrics
-from scib_metrics.nearest_neighbors import NeighborsResults
+import scdcb_metrics
+from scdcb_metrics.nearest_neighbors import NeighborsResults
 
 
 def dummy_x_labels(symmetric_positive=False, x_is_neighbors_results=False):
@@ -14,7 +14,7 @@ def dummy_x_labels(symmetric_positive=False, x_is_neighbors_results=False):
     if symmetric_positive:
         X = np.abs(X @ X.T)
     if x_is_neighbors_results:
-        dist_mat = csr_matrix(scib_metrics.utils.cdist(X, X))
+        dist_mat = csr_matrix(scdcb_metrics.utils.cdist(X, X))
         nbrs = NearestNeighbors(n_neighbors=30, metric="precomputed").fit(dist_mat)
         dist, ind = nbrs.kneighbors(dist_mat)
         X = NeighborsResults(indices=ind, distances=dist)
