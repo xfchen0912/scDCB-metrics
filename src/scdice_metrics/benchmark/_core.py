@@ -19,8 +19,8 @@ from plottable.plots import bar
 from sklearn.preprocessing import MinMaxScaler
 from tqdm import tqdm
 
-import scdcb_metrics
-from scdcb_metrics.nearest_neighbors import NeighborsResults, pynndescent
+import scdice_metrics
+from scdice_metrics.nearest_neighbors import NeighborsResults, pynndescent
 
 Kwargs = dict[str, Any]
 MetricType = bool | Kwargs
@@ -119,8 +119,8 @@ class Benchmarker:
     n_jobs
         Number of jobs to use for parallelization of neighbor search.
     progress_bar
-        Whether to show a progress bar for :meth:`~scdcb_metrics.benchmark.Benchmarker.prepare` and
-        :meth:`~scdcb_metrics.benchmark.Benchmarker.benchmark`.
+        Whether to show a progress bar for :meth:`~scdice_metrics.benchmark.Benchmarker.prepare` and
+        :meth:`~scdice_metrics.benchmark.Benchmarker.benchmark`.
     solver
         SVD solver to use during PCA. can help stability issues. Choose from: "arpack", "randomized" or "auto"
 
@@ -180,8 +180,8 @@ class Benchmarker:
         ----------
         neighbor_computer
             Function that computes the neighbors of the data. If `None`, the neighbors will be computed
-            with :func:`~scdcb_metrics.utils.nearest_neighbors.pynndescent`. The function should take as input
-            the data and the number of neighbors to compute and return a :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults`
+            with :func:`~scdice_metrics.utils.nearest_neighbors.pynndescent`. The function should take as input
+            the data and the number of neighbors to compute and return a :class:`~scdice_metrics.utils.nearest_neighbors.NeighborsResults`
             object.
         """
         gc.collect()
@@ -250,7 +250,7 @@ class Benchmarker:
                     gc.collect()
                     if use_metric_or_kwargs:
                         pbar.set_postfix_str(f"{metric_type}: {metric_name}") if pbar is not None else None
-                        metric_fn = getattr(scdcb_metrics, metric_name)
+                        metric_fn = getattr(scdice_metrics, metric_name)
                         if isinstance(use_metric_or_kwargs, dict):
                             # Kwargs in this case
                             metric_fn = partial(metric_fn, **use_metric_or_kwargs)

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from jax import jit
 
-from scdcb_metrics._types import NdArray
+from scdice_metrics._types import NdArray
 
 from ._pca import pca
 from ._utils import one_hot
@@ -26,7 +26,7 @@ def principal_component_regression(
     categorical
         If True, batch will be treated as categorical and one-hot encoded.
     n_components:
-        Number of components to compute, passed into :func:`~scdcb_metrics.utils.pca`.
+        Number of components to compute, passed into :func:`~scdice_metrics.utils.pca`.
         If None, all components are used.
 
     Returns

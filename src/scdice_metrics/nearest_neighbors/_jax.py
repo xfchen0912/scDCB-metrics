@@ -4,7 +4,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 
-from scdcb_metrics.utils import cdist, get_ndarray
+from scdice_metrics.utils import cdist, get_ndarray
 
 from ._dataclass import NeighborsResults
 

@@ -5,22 +5,22 @@ from typing import Literal
 from rich.console import Console
 from rich.logging import RichHandler
 
-scib_logger = logging.getLogger("scdcb_metrics")
+scib_logger = logging.getLogger("scdice_metrics")
 
 
 class ScibConfig:
-    """Config manager for scdcb-metrics.
+    """Config manager for scdice-metrics.
 
     Examples
     --------
     To set the progress bar style, choose one of "rich", "tqdm"
 
-    >>> scdcb_metrics.settings.progress_bar_style = "rich"
+    >>> scdice_metrics.settings.progress_bar_style = "rich"
 
     To set the verbosity
 
     >>> import logging
-    >>> scdcb_metrics.settings.verbosity = logging.INFO
+    >>> scdice_metrics.settings.verbosity = logging.INFO
     """
 
     def __init__(
@@ -59,13 +59,13 @@ class ScibConfig:
     def verbosity(self, level: str | int):
         """Set verbosity level.
 
-        If "scdcb_metrics" logger has no StreamHandler, add one.
+        If "scdice_metrics" logger has no StreamHandler, add one.
         Else, set its level to `level`.
 
         Parameters
         ----------
         level
-            Sets "scdcb_metrics" logging level to `level`
+            Sets "scdice_metrics" logging level to `level`
         force_terminal
             Rich logging option, set to False if piping to file output.
         """
@@ -83,7 +83,7 @@ class ScibConfig:
             scib_logger.setLevel(level)
 
     def reset_logging_handler(self) -> None:
-        """Reset "scdcb_metrics" log handler to a basic RichHandler().
+        """Reset "scdice_metrics" log handler to a basic RichHandler().
 
         This is useful if piping outputs to a file.
 

@@ -2,7 +2,7 @@ import jax.numpy as jnp
 from chex import dataclass
 from jax import jit
 
-from scdcb_metrics._types import NdArray
+from scdice_metrics._types import NdArray
 
 from ._utils import get_ndarray
 

@@ -3,7 +3,7 @@ from typing import Literal
 import numpy as np
 import pandas as pd
 
-from scdcb_metrics.utils import silhouette_samples
+from scdice_metrics.utils import silhouette_samples
 
 
 def silhouette_label(
@@ -53,7 +53,7 @@ def silhouette_batch(
 
     Default parameters ('euclidean', 'nearest') match scIB implementation.
 
-    Additional options enable BRAS compatible usage (see :func:`~scdcb_metrics.metrics.bras` documentation).
+    Additional options enable BRAS compatible usage (see :func:`~scdice_metrics.metrics.bras` documentation).
 
     Parameters
     ----------

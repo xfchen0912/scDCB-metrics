@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from scipy.sparse.csgraph import connected_components
 
-from scdcb_metrics.nearest_neighbors import NeighborsResults
+from scdice_metrics.nearest_neighbors import NeighborsResults
 
 
 def graph_connectivity(X: NeighborsResults, labels: np.ndarray) -> float:

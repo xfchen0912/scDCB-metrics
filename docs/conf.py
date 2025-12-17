@@ -22,9 +22,9 @@ sys.path.insert(0, str(HERE / "extensions"))
 
 # -- Project information -----------------------------------------------------
 
-project_name = "scdcb-metrics"
+project_name = "scdice-metrics"
 info = metadata(project_name)
-package_name = "scdcb_metrics"
+package_name = "scdice_metrics"
 author = info["Author"]
 copyright = f"{datetime.now():%Y}, {author}."
 version = info["Version"]
@@ -183,7 +183,7 @@ def linkcode_resolve(domain, info):
 html_theme = "sphinx_book_theme"
 html_static_path = ["_static"]
 html_css_files = ["css/custom.css"]
-html_title = "scdcb-metrics"
+html_title = "scdice-metrics"
 
 html_theme_options = {
     "repository_url": github_repo,

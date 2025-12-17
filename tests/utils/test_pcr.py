@@ -5,8 +5,8 @@ import pandas as pd
 import pytest
 from scib.metrics import pc_regression
 
-import scdcb_metrics
-from scdcb_metrics.utils import get_ndarray
+import scdice_metrics
+from scdice_metrics.utils import get_ndarray
 from tests.utils.sampling import categorical_sample, normal_sample, poisson_sample
 
 PCR_PARAMS = list(product([10, 100, 1000], [10, 100, 1000], [False]))
@@ -25,7 +25,7 @@ def test_pcr(n_obs, n_vars, categorical):
             pd.Categorical(get_ndarray(covariate)) if categorical else get_ndarray(covariate),
             n_comps=n_components,
         )
-        pcr = scdcb_metrics.utils.principal_component_regression(
+        pcr = scdice_metrics.utils.principal_component_regression(
             X,
             covariate,
             categorical=categorical,

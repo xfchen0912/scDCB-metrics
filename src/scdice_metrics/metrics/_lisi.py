@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from scdcb_metrics.nearest_neighbors import NeighborsResults
-from scdcb_metrics.utils import compute_simpson_index
+from scdice_metrics.nearest_neighbors import NeighborsResults
+from scdice_metrics.utils import compute_simpson_index
 
 
 def lisi_knn(X: NeighborsResults, labels: np.ndarray, perplexity: float = None) -> np.ndarray:
@@ -11,7 +11,7 @@ def lisi_knn(X: NeighborsResults, labels: np.ndarray, perplexity: float = None) 
     Parameters
     ----------
     X
-        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdice_metrics.utils.nearest_neighbors.NeighborsResults` object.
     labels
         Array of shape (n_cells,) representing label values
         for each cell.
@@ -47,7 +47,7 @@ def ilisi_knn(X: NeighborsResults, batches: np.ndarray, perplexity: float = None
     Parameters
     ----------
     X
-        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdice_metrics.utils.nearest_neighbors.NeighborsResults` object.
     batches
         Array of shape (n_cells,) representing batch values
         for each cell.
@@ -79,7 +79,7 @@ def clisi_knn(X: NeighborsResults, labels: np.ndarray, perplexity: float = None,
     Parameters
     ----------
     X
-        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdice_metrics.utils.nearest_neighbors.NeighborsResults` object.
     labels
         Array of shape (n_cells,) representing cell type label values
         for each cell.

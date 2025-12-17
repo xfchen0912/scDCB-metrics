@@ -7,7 +7,7 @@ import numpy as np
 from jax import Array
 from sklearn.utils import check_array
 
-from scdcb_metrics._types import IntOrKey
+from scdice_metrics._types import IntOrKey
 
 from ._dist import cdist
 from ._utils import get_ndarray, validate_seed

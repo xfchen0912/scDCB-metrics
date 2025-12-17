@@ -11,11 +11,11 @@ and this project adheres to [Semantic Versioning][].
 ## 0.1.0 (2025-12-17)
 
 ### Changed
-- **BREAKING**: Renamed package from `scib-metrics` to `scdcb-metrics`
-- **BREAKING**: Updated all import statements from `scib_metrics` to `scdcb_metrics`
+- **BREAKING**: Renamed package from `scib-metrics` to `scdice-metrics`
+- **BREAKING**: Updated all import statements from `scib_metrics` to `scdice_metrics`
 - Updated package metadata and author information
 - Updated documentation and README
-- Updated CI/CD configuration for scDCB-metrics repository
+- Updated CI/CD configuration for scDICE-metrics repository
 
 ## 0.6.0 (unreleased) - scib-metrics
 

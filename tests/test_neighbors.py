@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 import scanpy as sc
 
-from scdcb_metrics.nearest_neighbors import jax_approx_min_k, pynndescent
+from scdice_metrics.nearest_neighbors import jax_approx_min_k, pynndescent
 from tests.utils.data import dummy_benchmarker_adata
 
 

@@ -1,42 +1,63 @@
-# scDCB-metrics
+# scDICE-metrics
 
 [![Stars][badge-stars]][link-stars]
 [![PyPI][badge-pypi]][link-pypi]
 [![Build][badge-build]][link-build]
 [![Coverage][badge-cov]][link-cov]
 
-[badge-stars]: https://img.shields.io/github/stars/xfchen0912/scDCB-metrics?logo=GitHub&color=yellow
-[link-stars]: https://github.com/xfchen0912/scDCB-metrics/stargazers
-[badge-pypi]: https://img.shields.io/pypi/v/scdcb-metrics.svg
-[link-pypi]: https://pypi.org/project/scdcb-metrics
-[badge-build]: https://github.com/xfchen0912/scDCB-metrics/actions/workflows/build.yaml/badge.svg
-[link-build]: https://github.com/xfchen0912/scDCB-metrics/actions/workflows/build.yaml/
-[badge-cov]: https://codecov.io/gh/xfchen0912/scDCB-metrics/branch/main/graph/badge.svg
-[link-cov]: https://codecov.io/gh/xfchen0912/scDCB-metrics
+[badge-stars]: https://img.shields.io/github/stars/xfchen0912/scDICE-metrics?logo=GitHub&color=yellow
+[link-stars]: https://github.com/xfchen0912/scDICE-metrics/stargazers
+[badge-pypi]: https://img.shields.io/pypi/v/scdice-metrics.svg
+[link-pypi]: https://pypi.org/project/scdice-metrics
+[badge-build]: https://github.com/xfchen0912/scDICE-metrics/actions/workflows/build.yaml/badge.svg
+[link-build]: https://github.com/xfchen0912/scDICE-metrics/actions/workflows/build.yaml/
+[badge-cov]: https://codecov.io/gh/xfchen0912/scDICE-metrics/branch/main/graph/badge.svg
+[link-cov]: https://codecov.io/gh/xfchen0912/scDICE-metrics
 
-Accelerated and Python-only metrics for benchmarking single-cell integration outputs.
+scDICE-metrics extends the popular scib-metrics framework to address the next generation of challenges in single-cell modeling: **Disentanglement and Causality**. While traditional benchmarks focus on batch integration, scDICE-metrics evaluates how well models can separate biological factors of variation (e.g., cell type, perturbation, spatial niche) from technical noise, and how accurately they can predict cellular responses to unseen conditions (counterfactuals).
 
-This package contains implementations of metrics for evaluating the performance of single-cell omics data integration methods. The implementations of these metrics use [JAX](https://jax.readthedocs.io/en/latest/) when possible for jit-compilation and hardware acceleration. All implementations are in Python.
+This library provides a standardized suite of metrics derived from information theory, causal inference, and biological ground truths, enabling rigorous comparison of methods like scVI, biolord, CausCell, and scDisInFact.
 
-This package is a fork of scib-metrics with modifications for specific benchmarking needs. Currently we are porting metrics used in the scIB [manuscript](https://www.nature.com/articles/s41592-021-01336-8) (and [code](https://github.com/theislab/scib)). Deviations from the original implementations are documented.
+The implementations use [JAX](https://jax.readthedocs.io/en/latest/) when possible for jit-compilation and hardware acceleration. All implementations are in Python.
+
+## Key Features & Metrics
+
+### Disentanglement Metrics (Information-Theoretic)
+- **MIG (Mutual Information Gap)**: Measures the compactness of latent representations (from Chen et al. & scDisInFact)
+- **DCI (Disentanglement, Completeness, Informativeness)**: Evaluates the modularity and explicitness of the learned factors
+- **SAP Score**: Assesses separated attribute predictability
+- **JEMMIG**: Joint Entropy Minus Mutual Information Gap for robust modularity assessment
+
+### Counterfactual & Perturbation Metrics
+- **Interventional NLL**: Evaluates the likelihood of held-out perturbation data to assess out-of-distribution (OOD) generalization (from sVAE+)
+- **Reconstruction fidelity**: MSE and Pearson/Spearman correlations on specific gene sets (e.g., DEGs) between predicted counterfactuals and real held-out conditions
+- **Distance Metrics**: EMD (Earth Mover's Distance) and MMD (Maximum Mean Discrepancy) to compare generated vs. real cell distributions
+
+### Biological Interpretability
+- **Latent Traversal & Consistency**: Quantifies the preservation of biological manifolds (e.g., cell cycle, differentiation trajectories) when specific factors are manipulated
+- **Intrinsic vs. Extrinsic Separation**: Specifically designed for spatial omics to measure the decoupling of cell-intrinsic states from microenvironmental effects (inspired by MintFlow & SIMVI)
+
+## Motivation
+
+Understanding cellular identity requires more than just clustering; it requires decomposing the "factors of variation" that drive cell states. scDICE-metrics aims to be the standard harness for validating "Virtual Cell" and "Virtual Tissue" models.
 
 ## Installation
 
 You need to have Python 3.10 or newer installed on your system. If you don't have
 Python installed, we recommend installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
-There are several options to install scDCB-metrics:
+There are several options to install scDICE-metrics:
 
 1. Install the latest release on PyPI:
 
 ```bash
-pip install scdcb-metrics
+pip install scdice-metrics
 ```
 
 2. Install the latest development version:
 
 ```bash
-pip install git+https://github.com/xfchen0912/scDCB-metrics.git@main
+pip install git+https://github.com/xfchen0912/scDICE-metrics.git@main
 ```
 
 To leverage hardware acceleration (e.g., GPU) please install the apprpriate version of [JAX](https://github.com/google/jax#installation) separately. Often this can be easier by using conda-distributed versions of JAX.
@@ -67,4 +88,4 @@ References for individual metrics can be found in the corresponding documentatio
 }
 ```
 
-[issue-tracker]: https://github.com/xfchen0912/scDCB-metrics/issues
+[issue-tracker]: https://github.com/xfchen0912/scDICE-metrics/issues

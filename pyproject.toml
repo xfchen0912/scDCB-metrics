@@ -4,17 +4,17 @@ requires = ["hatchling"]
 
 
 [project]
-name = "scdcb-metrics"
+name = "scdice-metrics"
 version = "0.1.0"
-description = "Accelerated and Python-only metrics for single-cell data integration benchmarking"
+description = "Metrics for evaluating disentanglement and causality in single-cell models"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Xufeng Chen" }]
 maintainers = [{ name = "Xufeng Chen", email = "chenxufeng2022@sinh.ac.cn" }]
-urls.Documentation = "https://github.com/xfchen0912/scDCB-metrics#readme"
-urls.Source = "https://github.com/xfchen0912/scDCB-metrics"
-urls.Home-page = "https://github.com/xfchen0912/scDCB-metrics"
+urls.Documentation = "https://github.com/xfchen0912/scDICE-metrics#readme"
+urls.Source = "https://github.com/xfchen0912/scDICE-metrics"
+urls.Home-page = "https://github.com/xfchen0912/scDICE-metrics"
 dependencies = [
     "anndata",
     "chex",
@@ -75,10 +75,10 @@ tutorial = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ['src/scdcb_metrics']
+packages = ['src/scdice_metrics']
 
 [tool.coverage.run]
-source = ["scdcb_metrics"]
+source = ["scdice_metrics"]
 omit = ["**/test_*.py"]
 
 [tool.pytest.ini_options]
@@ -140,7 +140,7 @@ extend-include = ["*.ipynb"]
 "docs/*" = ["I", "BLE001", "E402", "B018"]
 "tests/*" = ["D", "B018"]
 "*/__init__.py" = ["F401"]
-"src/scdcb_metrics/__init__.py" = ["I"]
+"src/scdice_metrics/__init__.py" = ["I"]
 
 [tool.ruff.format]
 docstring-code-format = true

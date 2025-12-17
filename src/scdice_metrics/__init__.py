@@ -1,3 +1,11 @@
+"""scDICE-metrics: Metrics for evaluating disentanglement and causality in single-cell models.
+
+This package extends the scib-metrics framework to address disentanglement and causality
+in single-cell modeling. It provides metrics for evaluating how well models can separate
+biological factors of variation from technical noise, and how accurately they can predict
+cellular responses to unseen conditions (counterfactuals).
+"""
+
 import logging
 from importlib.metadata import version
 
@@ -42,9 +50,9 @@ __all__ = [
     "settings",
 ]
 
-__version__ = version("scdcb-metrics")
+__version__ = version("scdice-metrics")
 
 settings.verbosity = logging.INFO
 # Jax sets the root logger, this prevents double output.
-logger = logging.getLogger("scdcb_metrics")
+logger = logging.getLogger("scdice_metrics")
 logger.propagate = False

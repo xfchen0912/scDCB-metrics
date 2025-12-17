@@ -8,8 +8,8 @@ from scipy.sparse import spmatrix
 from sklearn.metrics.cluster import adjusted_rand_score, normalized_mutual_info_score
 from sklearn.utils import check_array
 
-from scdcb_metrics.nearest_neighbors import NeighborsResults
-from scdcb_metrics.utils import KMeans
+from scdice_metrics.nearest_neighbors import NeighborsResults
+from scdice_metrics.utils import KMeans
 
 logger = logging.getLogger(__name__)
 
@@ -91,7 +91,7 @@ def nmi_ari_cluster_labels_leiden(
     Parameters
     ----------
     X
-        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdice_metrics.utils.nearest_neighbors.NeighborsResults` object.
     labels
         Array of shape (n_cells,) representing label values
     optimize_resolution
