@@ -5,7 +5,7 @@ import numpy as np
 import scipy
 from scipy.sparse import csr_matrix, issparse
 
-from scib_metrics import nearest_neighbors
+from scdcb_metrics import nearest_neighbors
 
 logger = logging.getLogger(__name__)
 

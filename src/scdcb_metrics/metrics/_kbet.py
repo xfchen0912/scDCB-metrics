@@ -8,9 +8,9 @@ import numpy as np
 import pandas as pd
 import scipy
 
-from scib_metrics._types import NdArray
-from scib_metrics.nearest_neighbors import NeighborsResults
-from scib_metrics.utils import diffusion_nn, get_ndarray
+from scdcb_metrics._types import NdArray
+from scdcb_metrics.nearest_neighbors import NeighborsResults
+from scdcb_metrics.utils import diffusion_nn, get_ndarray
 
 logger = logging.getLogger(__name__)
 
@@ -50,12 +50,12 @@ def kbet(X: NeighborsResults, batches: np.ndarray, alpha: float = 0.05) -> float
 
     Note that this is also not equivalent to the kbet used in the original scib package,
     as that one computes kbet for each cell type label. To achieve this, use
-    :func:`scib_metrics.kbet_per_label`.
+    :func:`scdcb_metrics.kbet_per_label`.
 
     Parameters
     ----------
     X
-        A :class:`~scib_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
     batches
         Array of shape (n_cells,) representing batch values
         for each cell.
@@ -104,7 +104,7 @@ def kbet_per_label(
     Parameters
     ----------
     X
-        A :class:`~scib_metrics.utils.nearest_neighbors.NeighborsResults` object.
+        A :class:`~scdcb_metrics.utils.nearest_neighbors.NeighborsResults` object.
     batches
         Array of shape (n_cells,) representing batch values
         for each cell.

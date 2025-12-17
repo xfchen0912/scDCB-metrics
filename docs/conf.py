@@ -22,13 +22,13 @@ sys.path.insert(0, str(HERE / "extensions"))
 
 # -- Project information -----------------------------------------------------
 
-project_name = "scib-metrics"
+project_name = "scdcb-metrics"
 info = metadata(project_name)
-package_name = "scib_metrics"
+package_name = "scdcb_metrics"
 author = info["Author"]
 copyright = f"{datetime.now():%Y}, {author}."
 version = info["Version"]
-repository_url = f"https://github.com/YosefLab/{project_name}"
+repository_url = f"https://github.com/xfchen0912/{project_name}"
 
 # The full version, including alpha/beta/rc tags
 release = info["Version"]
@@ -40,7 +40,7 @@ needs_sphinx = "4.0"
 
 html_context = {
     "display_github": True,  # Integrate GitHub
-    "github_user": "yoseflab",  # Username
+    "github_user": "xfchen0912",  # Username
     "github_repo": project_name,  # Repo name
     "github_version": "main",  # Version
     "conf_py_path": "/docs/",  # Path in the checkout to the docs root

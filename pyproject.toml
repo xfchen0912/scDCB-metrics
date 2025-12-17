@@ -4,17 +4,17 @@ requires = ["hatchling"]
 
 
 [project]
-name = "scib-metrics"
-version = "0.5.8"
-description = "Accelerated and Python-only scIB metrics"
+name = "scdcb-metrics"
+version = "0.1.0"
+description = "Accelerated and Python-only metrics for single-cell data integration benchmarking"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "Adam Gayoso" }]
-maintainers = [{ name = "Adam Gayoso", email = "adamgayoso@berkeley.edu" }]
-urls.Documentation = "https://scib-metrics.readthedocs.io/"
-urls.Source = "https://github.com/yoseflab/scib-metrics"
-urls.Home-page = "https://github.com/yoseflab/scib-metrics"
+authors = [{ name = "Xiaofeng Chen" }]
+maintainers = [{ name = "Xiaofeng Chen", email = "xfchen0912@gmail.com" }]
+urls.Documentation = "https://github.com/xfchen0912/scDCB-metrics#readme"
+urls.Source = "https://github.com/xfchen0912/scDCB-metrics"
+urls.Home-page = "https://github.com/xfchen0912/scDCB-metrics"
 dependencies = [
     "anndata",
     "chex",

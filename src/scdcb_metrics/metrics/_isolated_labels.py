@@ -3,7 +3,7 @@ import logging
 import numpy as np
 import pandas as pd
 
-from scib_metrics.utils import silhouette_samples
+from scdcb_metrics.utils import silhouette_samples
 
 logger = logging.getLogger(__name__)
 

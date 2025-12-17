@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-scib-metrics is a Python package providing accelerated, Python-only metrics for benchmarking single-cell integration outputs. It implements metrics from the scIB manuscript using JAX for jit-compilation and hardware acceleration. The package is part of the scverse ecosystem.
+scDCB-metrics is a Python package providing accelerated, Python-only metrics for benchmarking single-cell integration outputs. It is a fork of scib-metrics with modifications for specific benchmarking needs. The package implements metrics from the scIB manuscript using JAX for jit-compilation and hardware acceleration.
 
 ## Development Commands
 

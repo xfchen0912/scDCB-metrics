@@ -1,58 +1,42 @@
-# scib-metrics
+# scDCB-metrics
 
 [![Stars][badge-stars]][link-stars]
 [![PyPI][badge-pypi]][link-pypi]
-[![PyPIDownloads][badge-downloads]][link-downloads]
-[![Docs][badge-docs]][link-docs]
 [![Build][badge-build]][link-build]
 [![Coverage][badge-cov]][link-cov]
-[![Discourse][badge-discourse]][link-discourse]
-[![Chat][badge-zulip]][link-zulip]
 
-[badge-stars]: https://img.shields.io/github/stars/YosefLab/scib-metrics?logo=GitHub&color=yellow
-[link-stars]: https://github.com/YosefLab/scib-metrics/stargazers
-[badge-pypi]: https://img.shields.io/pypi/v/scib-metrics.svg
-[link-pypi]: https://pypi.org/project/scib-metrics
-[badge-downloads]: https://static.pepy.tech/badge/scib-metrics
-[link-downloads]: https://pepy.tech/project/scib-metrics
-[badge-docs]: https://readthedocs.org/projects/scib-metrics/badge/?version=latest
-[link-docs]: https://scib-metrics.readthedocs.io/en/latest/?badge=latest
-[badge-build]: https://github.com/YosefLab/scib-metrics/actions/workflows/build.yaml/badge.svg
-[link-build]: https://github.com/YosefLab/scib-metrics/actions/workflows/build.yaml/
-[badge-cov]: https://codecov.io/gh/YosefLab/scib-metrics/branch/main/graph/badge.svg
-[link-cov]: https://codecov.io/gh/YosefLab/scib-metrics
-[badge-discourse]: https://img.shields.io/discourse/posts?color=yellow&logo=discourse&server=https%3A%2F%2Fdiscourse.scverse.org
-[link-discourse]: https://discourse.scverse.org/
-[badge-zulip]: https://img.shields.io/badge/zulip-join_chat-brightgreen.svg
-[link-zulip]: https://scverse.zulipchat.com/
+[badge-stars]: https://img.shields.io/github/stars/xfchen0912/scDCB-metrics?logo=GitHub&color=yellow
+[link-stars]: https://github.com/xfchen0912/scDCB-metrics/stargazers
+[badge-pypi]: https://img.shields.io/pypi/v/scdcb-metrics.svg
+[link-pypi]: https://pypi.org/project/scdcb-metrics
+[badge-build]: https://github.com/xfchen0912/scDCB-metrics/actions/workflows/build.yaml/badge.svg
+[link-build]: https://github.com/xfchen0912/scDCB-metrics/actions/workflows/build.yaml/
+[badge-cov]: https://codecov.io/gh/xfchen0912/scDCB-metrics/branch/main/graph/badge.svg
+[link-cov]: https://codecov.io/gh/xfchen0912/scDCB-metrics
 
 Accelerated and Python-only metrics for benchmarking single-cell integration outputs.
 
 This package contains implementations of metrics for evaluating the performance of single-cell omics data integration methods. The implementations of these metrics use [JAX](https://jax.readthedocs.io/en/latest/) when possible for jit-compilation and hardware acceleration. All implementations are in Python.
 
-Currently we are porting metrics used in the scIB [manuscript](https://www.nature.com/articles/s41592-021-01336-8) (and [code](https://github.com/theislab/scib)). Deviations from the original implementations are documented. However, metric values from this repository should not be compared to the scIB repository.
-
-## Getting started
-
-Please refer to the [documentation][link-docs].
+This package is a fork of scib-metrics with modifications for specific benchmarking needs. Currently we are porting metrics used in the scIB [manuscript](https://www.nature.com/articles/s41592-021-01336-8) (and [code](https://github.com/theislab/scib)). Deviations from the original implementations are documented.
 
 ## Installation
 
 You need to have Python 3.10 or newer installed on your system. If you don't have
 Python installed, we recommend installing [Miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
-There are several options to install scib-metrics:
+There are several options to install scDCB-metrics:
 
 1. Install the latest release on PyPI:
 
 ```bash
-pip install scib-metrics
+pip install scdcb-metrics
 ```
 
 2. Install the latest development version:
 
 ```bash
-pip install git+https://github.com/yoseflab/scib-metrics.git@main
+pip install git+https://github.com/xfchen0912/scDCB-metrics.git@main
 ```
 
 To leverage hardware acceleration (e.g., GPU) please install the apprpriate version of [JAX](https://github.com/google/jax#installation) separately. Often this can be easier by using conda-distributed versions of JAX.
@@ -83,7 +67,4 @@ References for individual metrics can be found in the corresponding documentatio
 }
 ```
 
-[scverse-discourse]: https://discourse.scverse.org/
-[issue-tracker]: https://github.com/YosefLab/scib-metrics/issues
-[changelog]: https://scib-metrics.readthedocs.io/en/latest/changelog.html
-[link-api]: https://scib-metrics.readthedocs.io/en/latest/api.html
+[issue-tracker]: https://github.com/xfchen0912/scDCB-metrics/issues

@@ -8,9 +8,18 @@ and this project adheres to [Semantic Versioning][].
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: https://semver.org/spec/v2.0.0.html
 
-## 0.6.0 (unreleased)
+## 0.1.0 (2025-12-17)
 
-## 0.5.8 (2025-XX-XX)
+### Changed
+- **BREAKING**: Renamed package from `scib-metrics` to `scdcb-metrics`
+- **BREAKING**: Updated all import statements from `scib_metrics` to `scdcb_metrics`
+- Updated package metadata and author information
+- Updated documentation and README
+- Updated CI/CD configuration for scDCB-metrics repository
+
+## 0.6.0 (unreleased) - scib-metrics
+
+## 0.5.8 (2025-XX-XX) - scib-metrics
 
 ### Added
 

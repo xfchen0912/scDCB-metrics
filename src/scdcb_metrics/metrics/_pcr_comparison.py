@@ -1,7 +1,7 @@
 import warnings
 
-from scib_metrics._types import NdArray
-from scib_metrics.utils import principal_component_regression
+from scdcb_metrics._types import NdArray
+from scdcb_metrics.utils import principal_component_regression
 
 
 def pcr_comparison(
@@ -27,7 +27,7 @@ def pcr_comparison(
         Whether to scale the score between 0 and 1. If True, larger values correspond to
         larger differences in variance contributions between `X_pre` and `X_post`.
     kwargs
-        Keyword arguments passed into :func:`~scib_metrics.principal_component_regression`.
+        Keyword arguments passed into :func:`~scdcb_metrics.principal_component_regression`.
 
     Returns
     -------
