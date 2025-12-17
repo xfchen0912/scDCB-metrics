@@ -2,8 +2,8 @@ import logging
 from importlib.metadata import version
 
 __version__ = "0.1.0"
-__author__ = "Xiaofeng Chen"
-__email__ = "xfchen0912@gmail.com"
+__author__ = "Xufeng Chen"
+__email__ = "chenxufeng2022@sinh.ac.cn"
 
 from . import nearest_neighbors, utils
 from .metrics import (
@@ -42,7 +42,7 @@ __all__ = [
     "settings",
 ]
 
-__version__ = version("scib-metrics")
+__version__ = version("scdcb-metrics")
 
 settings.verbosity = logging.INFO
 # Jax sets the root logger, this prevents double output.

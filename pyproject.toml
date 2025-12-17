@@ -10,8 +10,8 @@ description = "Accelerated and Python-only metrics for single-cell data integrat
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "Xiaofeng Chen" }]
-maintainers = [{ name = "Xiaofeng Chen", email = "xfchen0912@gmail.com" }]
+authors = [{ name = "Xufeng Chen" }]
+maintainers = [{ name = "Xufeng Chen", email = "chenxufeng2022@sinh.ac.cn" }]
 urls.Documentation = "https://github.com/xfchen0912/scDCB-metrics#readme"
 urls.Source = "https://github.com/xfchen0912/scDCB-metrics"
 urls.Home-page = "https://github.com/xfchen0912/scDCB-metrics"
