@@ -1,4 +1,6 @@
-# scDICE-metrics
+# scDICE(single-cell **D**isentanglement, **I**ntegration, and **C**ounterfactual **E**valuation)-metrics
+
+![Overview of scDICE-metrics](/img/logo_full.png)
 
 [![Stars][badge-stars]][link-stars]
 [![PyPI][badge-pypi]][link-pypi]
